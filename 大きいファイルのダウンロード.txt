@@ -1,0 +1,11 @@
+Response.Clear() 
+Response.ContentType = "APPLICATION/OCTET-STREAM" 
+Response.ContentEncoding = System.Text.Encoding.GetEncoding("Shift-Jis") 
+Response.AppendHeader("Content-Disposition", "Attachment; filename=sample.bmp") 
+oDLfile = New FileInfo("c:\\sample.bmp") 
+Response.WriteFile(oDLfile.FullName) 
+Response.Flush() 
+
+
+Response.TransmitFileを使用することで、メモリ上ではなく直接クライアントに転送することにより、
+実現することができました。
