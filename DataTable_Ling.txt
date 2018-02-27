@@ -1,0 +1,15 @@
+'Typeが「製造」でNameに「テスト」を含むデータを取得
+Dim query = From el In dt.AsEnumerable
+			Where el("Type") = "製造"
+			Where el("Name") Like "*テスト*"
+			Order By el("Code") Ascending
+			Select el
+
+'データの書き出し
+For Each r As DataRow In query
+	Debug.WriteLine(r("Code") & ": " & r("Name"))
+Next
+
+'Valueの合計を取得
+Dim valuesum = query.Sum(Function(el) el("Value"))
+Debug.WriteLine("Sum: " & valuesum) 
