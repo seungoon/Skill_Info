@@ -1,0 +1,19 @@
+'アセンブリを生成し、正規表現の性能をアップする処理
+Imports System.Text.RegularExpressions
+Imports System.Reflection
+
+Module Module1
+
+    Sub Main()
+        Dim SentencePattern As New RegexCompilationInfo("(?:""((?:[^""]|"""")*)""|([^\t""]*))(?:$|\t)",
+                                                     RegexOptions.Multiline,
+                                                     "SentencePattern",
+                                                     "SeisanUtilities.TabRegularExpressions",
+                                                     True)
+        Dim regexes() As RegexCompilationInfo = {SentencePattern}
+        Dim assemName As New AssemblyName("TabRegexLib, Version=1.0.0.1000, Culture=neutral, PublicKeyToken=null")
+        Regex.CompileToAssembly(regexes, assemName)
+
+    End Sub
+
+End Module
