@@ -1,0 +1,12 @@
+1.値の設定
+Me.BeginInvoke(Sub()
+                   Me.Txt_FileCount.Text = intFileCount
+               End Sub)
+
+２．CheckNewFileDoLoopメソッドの呼出
+Private Async Sub AsynchronousCheckFolder(ByVal strFolderPath As String, ByVal sbFileExtentions As StringBuilder, ByVal txtBox As TextBox)
+        Await Task.Run(Sub()
+                           CheckNewFileDoLoop(strFolderPath, sbFileExtentions, txtBox)
+                       End Sub)
+    End Sub
+
