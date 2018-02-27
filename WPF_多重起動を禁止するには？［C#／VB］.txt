@@ -1,0 +1,72 @@
+
+１．プロセス間の排他制御に利用できる二つの仕組みがある。ミューテックスとセマフォだ。
+	•ミューテックス：
+		Mutexクラス（System.Threading名前空間）を介して利用する
+		.NET 1.0から利用可能
+		同時に実行できるのは1スレッドのみ
+		実行権の取得と解放は同じスレッドで行わねばならない
+	•セマフォ：
+		Semaphoreクラス（System.Threading名前空間）を介して利用する
+		.NET 2.0から利用可能
+		同時に実行できるスレッドの数を指定できる
+		実行権の取得と解放は異なるスレッドで行ってもよい
+
+２．多重起動を禁止するには？
+
+	・C#
+		[STAThread]
+		public static void Main()
+		{
+		  const string SemaphoreName = ".NET Tips #1120 (C#)";
+		  bool createdNew; 
+
+		  // Semaphoreクラスのインスタンスを生成し、アプリケーション終了まで保持する
+		  using (var semaphore
+		          = new System.Threading.Semaphore(1, 1, SemaphoreName,
+		                                               out createdNew))
+		  {
+		    if (!createdNew) 
+		    {
+		      // 他のプロセスが先にセマフォを作っていた
+		      MessageBox.Show("すでに起動しています", ".NET TIPS #1120 (C#)",
+		                      MessageBoxButton.OK, MessageBoxImage.Hand);
+		      return; // プログラム終了
+		    }
+
+		    // アプリケーション起動
+		    App app = new App();
+		    app.StartupUri = new Uri("MainWindow.xaml", UriKind.Relative);
+		    app.InitializeComponent();
+		    app.Run();
+
+		  } // Semaphoreクラスのインスタンスを破棄
+		}
+		
+	・VB
+	<STAThread>
+	Public Shared Sub Main()
+	  Const SemaphoreName As String = ".NET Tips #1120 (VB)"
+	  Dim createdNew As Boolean
+
+	  ' Semaphoreクラスのインスタンスを生成し、アプリケーション終了まで保持する
+	  Using semaphore
+	          = New System.Threading.Semaphore(1, 1, SemaphoreName,
+	                                           createdNew)
+	    If (Not createdNew) Then
+	      ' 他のプロセスが先にセマフォを作っていた
+	      MessageBox.Show("すでに起動しています", ".NET TIPS #1120 (VB)",
+	                      MessageBoxButton.OK, MessageBoxImage.Hand)
+	      Return ' プログラム終了
+	    End If
+
+	    ' アプリケーション起動
+	    Dim app As Application = New Application()
+	    app.StartupUri = New Uri("MainWindow.xaml", UriKind.Relative)
+	    app.InitializeComponent()
+	    app.Run()
+
+	  End Using ' Semaphoreクラスのインスタンスを破棄
+	End Sub
+
+
+参考サイト：http://www.atmarkit.co.jp/ait/articles/1511/18/news028.html
