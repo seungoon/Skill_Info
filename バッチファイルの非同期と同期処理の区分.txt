@@ -1,0 +1,31 @@
+※［BAT］同期実行・非同期実行（start / call コマンド） 
+         バッチファイルで同期実行や非同期実行の仕方です。
+ 
+
+同期実行：　呼び出し元スクリプト、呼び出したスクリプトの２つが並列に同時実行する。 
+call "実行ファイル"
+start /wait "実行ファイル"
+ 
+
+非同期実行：　呼び出し元スクリプトは呼び出したスクリプトが終わるまで待っている。 
+start "実行ファイル"
+ 
+
+
+start コマンドのパラメータ 
+:: プロセスをHIGHクラスで実行する
+ start /high notepad.exe
+ 
+:: プロセスの優先度を下げて実行する
+ start /belownormal notepad.exe
+ 
+:: プロセスの優先度を上げて実行する
+ start /abovenormal notepad.exe
+ 
+:: アプリケーションの起動後、終了するまで待機する。
+ start /wait notepad.exe
+ 
+:: ウィンドウを起動しない
+ start /b notepad.exe
+ 
+pause
