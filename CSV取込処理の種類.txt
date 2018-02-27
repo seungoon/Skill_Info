@@ -1,0 +1,12 @@
+ODBC Provider（Microsoft Text Driver）
+
+1.http://dobon.net/vb/dotnet/file/readcsvfile.html
+2.http://support.microsoft.com/ja-jp/kb/187670/ja
+3.http://ken3.org/cgi-bin/test/test080-1.asp
+
+ADO利点：
+ADO の主な利点は、使用が簡単で、高速に動作し、メモリのオーバーヘッドが小さく、
+ディスクの使用量が少ないことです。ADO では、クライアント/サーバー アプリケーションおよび 
+Web ベース アプリケーションを構築するための重要な機能がサポートされています。
+
+https://msdn.microsoft.com/ja-jp/library/cc407851.aspx
