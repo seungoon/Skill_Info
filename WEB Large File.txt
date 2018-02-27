@@ -1,0 +1,21 @@
+<configuration>
+  <runtime>
+    <gcAllowVeryLargeObjects enabled="true" />
+  </runtime>
+</configuration>
+
+
+<configuration>
+    <system.web>
+        <!-- maxRequestLength and requestLengthDiskThreshold is in Kilobytes-->
+        <httpRuntime maxRequestLength="204800" requestLengthDiskThreshold="204800" />
+    </system.web>
+    <system.webServer>
+        <security>
+            <requestFiltering>
+                <!-- maxAllowedContentLength is in Bytes not Kilobytes -->
+                <requestLimits maxAllowedContentLength="204800000" />
+            </requestFiltering>
+        </security>
+    </system.webServer>
+</configuration>
