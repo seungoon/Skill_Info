@@ -1,0 +1,11 @@
+※Chromeでcloseとsubmitが共存する場合、EventがPostできない問題が存在する。
+　そのため、close処理は別途に行う必要がある。
+ 
+ ・例：
+ → unloadイベントで行うほうがいい。
+ $( window ).unload(function() {
+    	window.close();
+    });
+    
+ 
+※unloadイベントとは、ページから離れる時（ウインドウを閉じたり、別のページに移動したり、リロードしたりした時）に引数のfunctionを実行する。
