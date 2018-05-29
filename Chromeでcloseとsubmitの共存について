@@ -2,10 +2,33 @@
 　そのため、close処理は別途に行う必要がある。
  
  ・例：
- → unloadイベントで行うほうがいい。
+ // 子画面でunloadでCloseするか判断する
  $( window ).unload(function() {
-    	window.close();
-    });
+    	var rtnValue = window.opener.getChildScreenFlag();
+	  	if (rtnValue == "1") {
+	  		window.opener.openChildScreen();
+	  		window.close();
+	  	}
+ });
+ 
+ // 子画面でSubmitする時
+ document.mainForm.submit();
+	window.opener.callbackPopupContractDetail();
+ window.opener.focus();
+ window.opener.closeChildScreen();
+ 
+ // 親画面で以下のFunctionを定義
+ function openChildScreen() {
+  $("#mainForm [id=controlChildScreenFlag]").val("0");
+ }
+        
+		function closeChildScreen() {
+			$("#mainForm [id=controlChildScreenFlag]").val("1");
+  }
+		
+		function getChildScreenFlag() {
+			return $("#mainForm [id=controlChildScreenFlag]").val();
+  }
     
  
 ※unloadイベントとは、ページから離れる時（ウインドウを閉じたり、別のページに移動したり、リロードしたりした時）に引数のfunctionを実行する。
