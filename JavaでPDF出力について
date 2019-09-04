@@ -1,0 +1,6 @@
+１．PDFBox（ライセンスフリー）
+ ・https://pdfbox.apache.org/
+ ・https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox
+２．iText7（ライセンス確認必要）
+ ・https://itextpdf.com/ja
+ ・https://mvnrepository.com/artifact/com.itextpdf/itext7-core
