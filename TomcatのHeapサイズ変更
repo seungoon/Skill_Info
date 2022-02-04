@@ -3,3 +3,15 @@ Tomcatのbinディレクトリにある、setenv.batファイルに以下の行�
 ---
 set "JAVA_OPTS=%JAVA_OPTS% -Xms128m -Xmx1024m -XX:MaxPermSize=256m -server"
 ---
+
+※ほかのオプション情報
+-XX:NewSize=1024m    ・・・・・・・New領域の最小サイズ
+-XX:MaxNewSize=1024m ・・・・・・・New領域の最大サイズ
+-Xms4096  ・・・・・・・・・・・・・Javaヒープ全体の最小サイズ
+-Xmx4096  ・・・・・・・・・・・・・Javaヒープ全体の最大サイズ
+-XX:SurvivorRatio=12 ・・・・・・・New領域内の配分比　Survivor領域1に対しEdenは12
+-XX:TargetSurvivorRatio=90  ・・・Surviver領域が90％に達したらマイナーGC
+-XX:MaxTenuringThreshold=15 ・・・Survivor領域における移動の回数
+-XX:LargePageSizeInBytes=256m ・・ラージページを使用するための領域確保
+-XX:MetaspaceSize=384m   ・・・・・メタスペースサイズ
+-XX:MaxMetaspaceSize=384m   ・・・メタスペース最大値
