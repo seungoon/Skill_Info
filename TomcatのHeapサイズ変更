@@ -1,0 +1,5 @@
+
+Tomcatのbinディレクトリにある、setenv.batファイルに以下の行を先頭に入れておく。
+---
+set "JAVA_OPTS=%JAVA_OPTS% -Xms128m -Xmx1024m -XX:MaxPermSize=256m -server"
+---
